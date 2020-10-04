@@ -8,19 +8,27 @@
         </div>
         <Serach @keychange="keywordsChnage" @search="search"/>
     </div>
+    {{
+        bgColor
+    }}
   </div>
 </template>
 
 <script>
 import Serach from 'components/minComponents/search.vue';
+import {mapGetters,mapMutations,mapActions} from 'vuex'
+import * as types from 'src/store/type.js' 
 export default {
     components:{
         Serach
     },
+    computed:{
+        ...mapGetters(['bgColor'])
+    },
     methods:{
+        ...mapActions(['setbgColor']),
+        ...mapMutations([types.GlOBAL_BGCOLOR]),
         keywordsChnage(keywords,cb){
-            console.log(keywords)
-            console.log(cb)
             cb({
                 nameKey:'name',
                 idKey:'id',
@@ -75,6 +83,7 @@ export default {
         },
         search(keywords){
             console.log('搜索关键字'+keywords)
+            this[types.GlOBAL_BGCOLOR](keywords)
         }
     }
 }

@@ -1,6 +1,6 @@
 <template>
-  <div class="search-box">
-    <input type="text" class="search-input" @keyup="keyup" @focus="inputChange" @click="inputChange = true" @blur="searchHide" v-model="searchKey">
+  <div class="search-box" @blur="searchHide">
+    <input type="text" class="search-input" @keyup="keyup" @focus="inputChange"  v-model="searchKey">
     <button class="search-btn" @click="$emit('search',searchKey)">
         <div class="search-icon">
         </div>
@@ -11,7 +11,7 @@
             <li  v-for="(item,i) in searchTips" :key="i+'_'+item[idKey]" :class="{
                 result:true,
                 now:searchTipsIndex == i
-            }">
+            }" @click="selectKey(i)">
                 <span>
                     {{i+1}}.
                 </span> 
@@ -99,10 +99,18 @@ export default {
             console.log(this.searchTipsIndex)
             //将ul元素的滚动条滚到到指定位置
         },
+        selectKey(i){
+            //点击搜索提示触发事件
+            console.log('tes************t')
+            this.searchTipsIndex = i;
+            this.searchKey = this.searchTips[this.searchTipsIndex][this.nameKey]
+            this.jumpSearch();
+        },
         jumpSearch(){
             //获取数据,直接传递事件
             let keywords = this.searchKey;
-            this.$emit('search',keywords)
+            this.$emit('search',keywords);
+            // this.searchHide();
         },
         searchHide(){
             //隐藏窗口,初始化数据
