@@ -77,7 +77,31 @@ app.on('ready', async() => {
             console.error('Vue Devtools failed to install:', e.toString())
         }
     }
+
     createWindow()
+    globalShortcut.register('ctrl+alt+h', function() {
+        // 隐藏窗口
+        if (win) {
+            win.hide()
+        }
+    })
+    globalShortcut.register('ctrl+alt+j', function() {
+        // 显示窗口
+        if (win) {
+            win.show()
+        }
+    })
+    let flag
+    globalShortcut.register('ctrl+alt+x', function() {
+        // 最小化窗口和恢复窗口
+        if (win) {
+            if (win.isMinimized()) {
+                win.restore()
+            } else {
+                win.minimize()
+            }
+        }
+    })
 })
 
 // Exit cleanly on request from parent process in development mode.
