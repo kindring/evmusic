@@ -1,5 +1,5 @@
 <template>
-  <div class="search-box" @blur="searchHide">
+  <div class="search-box">
     <input type="text" class="search-input" @keyup="keyup" @focus="inputChange"  v-model="searchKey">
     <button class="search-btn" @click="$emit('search',searchKey)">
         <div class="search-icon">
@@ -43,6 +43,13 @@ export default {
         }
     },
     computed:{
+    },
+    mounted(){
+        document.addEventListener("click", e => {
+            if (!this.$el.contains(e.target)){
+                this.searchHide();
+            }
+        });
     },
     methods:{
         inputChange(e){
