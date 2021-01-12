@@ -1,8 +1,10 @@
 'use strict'
 
-import { app, protocol, BrowserWindow, globalShortcut } from 'electron'
+import { app, protocol, BrowserWindow, globalShortcut, ipcRenderer } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
+import path from 'path';
+import ipc from './ipc/index';
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -29,7 +31,8 @@ function createWindow() {
             // Use pluginOptions.nodeIntegration, leave this alone
             // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
             nodeIntegration: true,
-            webSecurity: false
+            webSecurity: false,
+            preload: path.join(__dirname, 'preload.js')
         }
     })
 
@@ -42,7 +45,13 @@ function createWindow() {
             // Load the index.html when not in development
         win.loadURL('app://./index.html')
     }
+    ipc.registerWin({
+        sign: 'main',
+        title: '主进程窗口',
+        win: win
+    });
 
+    ipc.registerApp(app);
     win.on('closed', () => {
         win = null
     })

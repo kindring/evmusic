@@ -16,6 +16,7 @@
 <script>
 import Sidebar from 'components/sidebar/sidebar'
 import Home from 'components/views/home/home.vue'
+
 export default {
     components:{
         Sidebar,

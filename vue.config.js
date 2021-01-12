@@ -11,6 +11,13 @@ module.exports = {
         host: '0.0.0.0',
         port: 8080
     },
+    pluginOptions: {
+        electronBuilder: {
+            nodeIntegration: true,
+            // Or, for multiple preload files:
+            preload: { preload: 'src/preload.js' }
+        }
+    },
     chainWebpack: config => {
         config.resolve.alias
             .set('@', resolve('src'))

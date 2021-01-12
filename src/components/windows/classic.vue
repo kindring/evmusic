@@ -3,10 +3,10 @@
     <div class="top-bar">
         <div class="drag"></div>
         <div class="control-box">
-            <div class="btn ding"></div>
-            <div class="btn min"></div>
-            <div class="btn full"></div>
-            <div class="btn close"></div>
+            <div class="btn ding"  @click="btnClickHandel('ding')"></div>
+            <div class="btn min" @click="btnClickHandel('min')"></div>
+            <div class="btn full"  @click="btnClickHandel('full')"></div>
+            <div class="btn close"  @click="btnClickHandel('close')"></div>
         </div>
     </div>
     <div class="content">
@@ -17,7 +17,28 @@
 
 <script>
 export default {
-
+    methods:{
+        btnClickHandel(action){
+            switch(action){
+                case 'min':
+                    console.log(this.$ipc);
+                    this.$ipc.send('minWin','main');
+                    break;
+                case 'full':
+                    console.log(this.$ipc);
+                    this.$ipc.send('maxWin','main');
+                    break;
+                case 'close':
+                    console.log(this.$ipc);
+                    this.$ipc.send('exitApp','main');
+                    break;
+                case 'ding':
+                    console.log('置顶窗口');
+                    this.$ipc.send('topWin','main');
+                    break;
+            }
+        }
+    }
 }
 </script>
 
