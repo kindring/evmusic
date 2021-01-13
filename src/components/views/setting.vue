@@ -1,6 +1,6 @@
 <template>
   <div class="setting-view">
-      
+      设置页面
   </div>
 </template>
 

@@ -1,10 +1,10 @@
 <template>
   <div class="sidebar">
     <ul class="ul">
-        <li v-for="item in menus" :key="item.id" @click="$emit('input',item.name)"
+        <li v-for="item in menus" :key="item.id" @click="clickHandel(item)"
             :class="{
                 li:true,
-                now:(item.id == 1)
+                now:(item.id == nowId)
             }"
         >
             {{
@@ -17,38 +17,25 @@
 
 <script>
 export default {
-    props:[
-
-    ],
+    props:
+    {
+        menus:{
+            require:true,
+            default:[]
+        }
+    }
+    ,
     data(){
         return {
             nowId:1,
-            menus:[
-                {
-                    id:1,
-                    title:'',
-                    name:'主页',
-                    src:null
-                },
-                {
-                    id:2,
-                    title:'',
-                    name:'歌单',
-                    src:null
-                },
-                {
-                    id:3,
-                    title:'',
-                    name:'下载',
-                    src:null
-                },
-                {
-                    id:4,
-                    title:'',
-                    name:'设置',
-                    src:null
-                },
-            ]
+            
+        }
+    },
+    methods:{
+        clickHandel(item){
+            this.$emit('input',item);
+            this.nowId = item.id;
+            console.log(this.nowId)
         }
     }
 }

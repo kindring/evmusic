@@ -1,6 +1,9 @@
 import { ipcMain } from 'electron'
 import { checkFieldIsExist, log, error } from '../tools/index'
 
+import db from '../mainProgress/db'
+
+console.log(db);
 
 let winArr = [];
 

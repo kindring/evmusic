@@ -1,3 +1,5 @@
+let reg = require('./reg');
+
 /**
  * 检查某个元素中的指定字段是否存在
  * @param {Object} obj 要被检测的对象
@@ -72,4 +74,5 @@ module.exports = {
     log: Log.log,
     error: Log.error,
     Log,
+    reg
 }
