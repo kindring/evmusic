@@ -1,6 +1,6 @@
 // 数据存储接口
-const songList = require('./db/songList')
-
+const songList = require('./db/songList');
+// const settings = require('./db/settings');
 // 所需要存储的数据
 // 账号数据
 // 文件夹数据
@@ -55,5 +55,5 @@ let songsOption = {
 }
 
 module.exports = {
-    songList
+    songList,
 }

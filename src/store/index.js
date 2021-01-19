@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import global from './modules/globle'
+import songlist from './songlist/index'
 
 Vue.use(Vuex)
 let store = new Vuex.Store({
@@ -9,7 +10,8 @@ let store = new Vuex.Store({
     mutations: {},
     actions: {},
     modules: {
-        global
+        global,
+        songlist
     }
 })
 export default store;

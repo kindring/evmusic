@@ -1,6 +1,6 @@
-import * as types from '../type'
+import * as types from './type'
 const state = {
-    bgColor: '#6cf',
+    bgColor: '#6c33f',
     subBgColor: 'orangered',
     subTextColor: 'gray',
     textColor: 'black'
@@ -41,10 +41,11 @@ const mutations = {
 }
 
 const actions = {
-    setbgColor({ commit }, color) {
-        commit(types.GlOBAL_BGCOLOR, color)
+        setbgColor({ commit }, color) {
+            commit(types.GlOBAL_BGCOLOR, color)
+        }
     }
-}
+    /** 全局设置模块 */
 export default {
     state,
     actions,

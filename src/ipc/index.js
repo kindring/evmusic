@@ -1,9 +1,11 @@
-import { ipcMain } from 'electron'
-import { checkFieldIsExist, log, error } from '../tools/index'
+import { ipcMain } from 'electron';
+import { checkFieldIsExist, log, error } from '../tools/index';
+/** 数据库的数据 */
+import db from '../mainProgress/db';
+/** 歌单的ipc数据 */
+import './song/songlist';
 
-import db from '../mainProgress/db'
-
-console.log(db);
+// console.log(db);
 
 let winArr = [];
 
@@ -107,10 +109,11 @@ function topWin(sign) {
     }
 }
 
-
+/** 退出软件 */
 function exit() {
     app.exit();
 }
+
 ipcMain.on('closeWin', (event, arg) => {
     closeWin(arg);
     event.reply('closeWin_reply');
@@ -131,6 +134,7 @@ ipcMain.on('exitApp', (event, arg) => {
     event.reply('exitApp_reply');
     exit(arg);
 });
+
 export default {
     registerWin,
     closeWin,

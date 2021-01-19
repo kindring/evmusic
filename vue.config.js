@@ -23,6 +23,7 @@ module.exports = {
             .set('@', resolve('src'))
             .set('src', resolve('src'))
             .set('common', resolve('src/common'))
-            .set('components', resolve('src/components'));
+            .set('components', resolve('src/components'))
+            .set('static', resolve('src/static'))
     }
 };

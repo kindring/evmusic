@@ -13,13 +13,14 @@ const db = new nedb({
 let modeTypes = ['localhost', 'web']
     /** 数据模型 */
 let schema = {
-    /** 歌单模式 */
-    mode: joi.string().valid(...modeTypes).required().error(new Error(`歌单类型错误${modeTypes.join(' or ')}`)),
     /** 歌单标题 */
     title: joi.string().default('歌单').error(new Error(`歌单标题应为字符串格式`)),
+    /** 歌单副标题 */
+    subTitle: joi.string().default('副标题,这没有啊').error(new Error(`歌单标题应为字符串格式`)),
+    /**  */
+    descript: joi.string().default('凭本事创建的歌单为什么会有简介这种东西').error(new Error(`歌单简介应为字符串格式`)),
     /** 歌单排序 */
     orderNum: joi.number().default(0).error(new Error('歌单排序应该为数字')),
-    path: joi.string().required().error(new Error('必须指定一个歌单路径'))
 }
 
 let createSchema = joi.object(schema);
@@ -143,6 +144,22 @@ function update(id, data) {
 // })
 
 
+/**
+ * 删除指定歌单,单选
+ * @param {String} id 
+ */
+function remove(id) {
+    return new Promise((resolve, reject) => {
+        let query = id ? { '_id': id } : {};
+        db.remove(query, {}, (err, numRemoved) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(numRemoved)
+        })
+    });
+
+}
 
 
 
@@ -151,5 +168,6 @@ function update(id, data) {
 module.exports = {
     create,
     find,
-    update
+    update,
+    remove
 }

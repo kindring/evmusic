@@ -1,12 +1,12 @@
 <template>
-  <div class="container w-full box-border">
-    
+  <div class="music-control">
+      播放控制组件 
   </div>
 </template>
 
 <script>
 export default {
-    name:'song-list'
+    
 }
 </script>
 
