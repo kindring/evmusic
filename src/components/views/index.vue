@@ -17,7 +17,6 @@
 
 <script>
 import Sidebar from 'components/sidebar/sidebar'
-
 /** 页面数据 */
 import Home from 'components/views/home/home.vue'
 import setting from 'components/views/setting.vue'

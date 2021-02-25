@@ -20,4 +20,4 @@ Vue.prototype.$ipc = ipc;
 new Vue({
     store,
     render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');

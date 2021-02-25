@@ -12,7 +12,7 @@
     <div class="content">
         <slot></slot>
         <div class="absolute w-full insert-x-0 bottom-0 h-12 flex justify-center">
-            <div class="w-4/5 bg-blue-300 h-full rounded rounded-b-none px-4 flex items-center" >
+            <div class="w-4/5 bg-blue-300 h-full rounded rounded-b-none px-4 flex items-center justify-between" >
                 <!-- 歌曲图片框 -->
                 <div 
                 class="highBorder  w-11  h-11 m-1 "
@@ -43,8 +43,21 @@
                 </div>
 
                 <!-- 歌曲控制框 -->
-                <div class="btns">
+                <div class="btns px-4 flex items-center ">
+                    <div class="w-10 h-10 rounded-full flex justify-around mx-2 items-center border border-blue-100 cursor-pointer ">
+                        ◁
+                    </div>
+                    <div class="w-10 h-10 rounded-full flex justify-around mx-2 items-center border border-blue-100 cursor-pointer ">
+                        ▶
+                    </div>
+                    <div class="w-10 h-10 rounded-full flex justify-around mx-2 items-center border border-blue-100 cursor-pointer ">
+                        ▷
+                    </div>
+                </div>
 
+                <!-- 播放模式控制 -->
+                <div class="">
+                    
                 </div>
             </div>
         </div>
@@ -81,11 +94,13 @@ export default {
     data(){
         return {
             song:{
-                title:'冬日恋歌',
+                title:'潮鸣',
                 subTitle: '测试一大段文字',
                 author: '李大钊',
                 img: 'https://s3.ax1x.com/2021/01/18/scScKs.png',
-            }
+            },
+
+            
         }
     },
     directives:{
@@ -279,8 +294,11 @@ export default {
         animation: clippath 3s infinite linear;
         border-radius: 3px;
     }
-    .highBorder:hover::after{
+    .highBorder::after{
         animation: clippath 3s infinite -1.5s linear;
+    }
+    .highBorder:hover::after, .highBorder:hover::before{
+        animation-play-state: paused
     }
     @keyframes clippath {
         0%,
